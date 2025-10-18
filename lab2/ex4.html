@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ex4</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        font-family: "Times New Roman", Times, serif;
+        background-color: gainsboro;
+      }
+
+      .page-container {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: #fff;
+      }
+
+      header,
+      footer {
+        padding: 20px;
+      }
+
+      header {
+        border-bottom: 2px solid #d4b28c;
+      }
+
+      footer {
+        border-top: 2px solid #d4b28c;
+        text-align: center;
+        font-size: 0.9em;
+        color: #555;
+        margin-top: auto;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin-top: 0;
+      }
+
+      h1 {
+        font-size: 2.5em;
+        color: #c88a32;
+      }
+
+      h2 {
+        font-size: 1.2em;
+      }
+
+      .main-content-area {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+      }
+
+      .main-column {
+        flex: 0 0 60%;
+        padding: 20px;
+      }
+
+      .sidebar-column {
+        flex: 0 0 40%;
+        padding: 20px;
+        background-color: #fef5e7;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-container">
+      <header>
+        <h1>San Joaquin Valley Town Hall</h1>
+        <h2>Bringing cutting-edge speakers to the valley</h2>
+      </header>
+
+      <main class="main-content-area">
+        <section class="main-column">
+          <h3>This season's guest speakers</h3>
+          <ul>
+            <li>October: David Brancaccio</li>
+            <li>November: Andrew Ross Sorkin</li>
+            <li>January: Amy Chua</li>
+            <li>February: Scott Sampson</li>
+            <li>March: Carlos Eire</li>
+            <li>April: Ronan Tynan</li>
+          </ul>
+
+          <h3>Looking for a unique gift?</h3>
+          <p>
+            Town Hall has the answer. For only $100, you can get a book of
+            tickets for all of the remaining speakers. And the bargain includes
+            a second book of tickets for a companion.
+          </p>
+          <p>
+            Or, for $50, you can give yourself the gift of our speakers, and
+            still get an extra ticket for a companion, but for just one of the
+            events. See you at the next show?
+          </p>
+
+          <h3>Contact us by phone at (559) 555-1212 for ticket information.</h3>
+        </section>
+
+        <aside class="sidebar-column">
+          <h3>Lecture notes</h3>
+          <h4>Event change for November</h4>
+          <p>
+            SJV Town Hall is pleased to announce the addition of award-winning
+            author Andrew Ross Sorkin. The appearance of previously scheduled
+            speaker, Greg Mortenson, has been postponed.
+          </p>
+
+          <h4>Lecture day, time, and location</h4>
+          <p>
+            All one-hour lectures are on the second Wednesday of the month
+            beginning at 10:30 a.m. at William Saroyan Theatre, 700 M Street,
+            Fresno, CA.
+          </p>
+        </aside>
+      </main>
+
+      <footer>
+        <p>&copy; Copyright 2022 San Joaquin Valley Town Hall.</p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ex3</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .outside-wrapper {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        border: 2px solid orange;
+      }
+
+      header,
+      footer {
+        padding: 20px;
+        background-color: antiquewhite;
+        text-align: left;
+      }
+
+      footer {
+        background-color: aquamarine;
+      }
+
+      .content-wrapper {
+        flex: 1;
+        display: flex;
+        border-top: 1px solid goldenrod;
+        border-bottom: 1px solid goldenrod;
+      }
+
+      .main-content {
+        flex: 1;
+        padding: 20px;
+      }
+
+      .sidebar {
+        flex: 0 0 150px;
+        padding: 20px;
+      }
+
+      .sidebar.left {
+        border-right: 1px solid goldenrod;
+        background: azure;
+      }
+      .sidebar.right {
+        border-left: 1px solid goldenrod;
+        background: wheat;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outside-wrapper">
+      <header>Header</header>
+
+      <div class="content-wrapper">
+        <div class="sidebar left">Sidebar A</div>
+        <main class="main-content">Main content</main>
+        <div class="sidebar right">Sidebar B</div>
+      </div>
+
+      <footer>Footer</footer>
+    </div>
+  </body>
+</html>
