@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>GitHub Repo Finder</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #0d1117;
+        color: #c9d1d9;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .header h1 {
+        color: #58a6ff;
+        margin-bottom: 10px;
+      }
+
+      .search-container {
+        background: #161b22;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+      }
+
+      .search-box {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+
+      .search-box input {
+        flex: 1;
+        padding: 12px;
+        background: #0d1117;
+        border: 1px solid #30363d;
+        border-radius: 6px;
+        color: #c9d1d9;
+        font-size: 16px;
+      }
+
+      .search-box button {
+        padding: 12px 30px;
+        background: #238636;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .search-box button:hover {
+        background: #2ea043;
+      }
+
+      .filters {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .filters label {
+        color: #8b949e;
+      }
+
+      .filters select {
+        padding: 8px 12px;
+        background: #0d1117;
+        border: 1px solid #30363d;
+        border-radius: 6px;
+        color: #c9d1d9;
+      }
+
+      .repo-card {
+        background: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 15px;
+        transition: transform 0.2s;
+      }
+
+      .repo-card:hover {
+        transform: translateY(-2px);
+        border-color: #58a6ff;
+      }
+
+      .repo-name {
+        color: #58a6ff;
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .repo-name:hover {
+        text-decoration: underline;
+      }
+
+      .repo-description {
+        color: #8b949e;
+        margin: 10px 0;
+      }
+
+      .repo-meta {
+        display: flex;
+        gap: 20px;
+        font-size: 14px;
+        color: #8b949e;
+      }
+
+      .language-badge {
+        display: inline-block;
+        padding: 4px 10px;
+        background: #1f6feb;
+        border-radius: 12px;
+        font-size: 12px;
+      }
+
+      .loading {
+        text-align: center;
+        padding: 40px;
+        color: #8b949e;
+      }
+
+      .error {
+        background: #da3633;
+        color: white;
+        padding: 15px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+      }
+
+      .load-more {
+        text-align: center;
+        margin: 30px 0;
+      }
+
+      .load-more button {
+        padding: 12px 40px;
+        background: #21262d;
+        border: 1px solid #30363d;
+        color: #c9d1d9;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .load-more button:hover {
+        background: #30363d;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>🔍 GitHub Repository Finder</h1>
+        <p style="color: #8b949e">Search and explore GitHub repositories</p>
+      </div>
+
+      <div class="search-container">
+        <div class="search-box">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search repositories..."
+            onkeypress="if(event.key==='Enter') performSearch()"
+          />
+          <button onclick="performSearch()">Search</button>
+        </div>
+
+        <div class="filters">
+          <label>Sort by:</label>
+          <select id="sortSelect" onchange="performSearch()">
+            <option value="stars">⭐ Stars</option>
+            <option value="forks">🔱 Forks</option>
+            <option value="updated">🕒 Recently Updated</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="errorMessage"></div>
+      <div id="repoList"></div>
+      <div id="loadMoreContainer"></div>
+    </div>
+
+    <script>
+      let currentPage = 1;
+      let currentQuery = "";
+      let totalResults = 0;
+
+      // TODO: Implement functions
+      async function searchRepositories(query, sort = "stars", page = 1) {
+        // TODO: Fetch repositories from GitHub API
+        try {
+          clearError();
+          const url = `https://api.github.com/search/repositories?q=${encodeURIComponent(
+            query
+          )}&sort=${sort}&page=${page}&per_page=10`;
+          const res = await fetch(url);
+          if (!res.ok) throw new Error("Failed to fetch data");
+          const data = await res.json();
+          totalResults = data.total_count;
+          return data.items;
+        } catch (e) {
+          showError(e.message);
+          return [];
+        }
+      }
+
+      function displayRepositories(repos, append = false) {
+        // TODO: Display repository cards
+        const repoList = document.getElementById("repoList");
+        if (!append) repoList.innerHTML = "";
+        repos.forEach((repo) => {
+          const card = createRepoCard(repo);
+          repoList.appendChild(card);
+        });
+        const loadMoreContainer = document.getElementById("loadMoreContainer");
+        loadMoreContainer.innerHTML = "";
+        if (repos.length === 10) {
+          const btn = document.createElement("button");
+          btn.textContent = "Load More";
+          btn.onclick = loadMore;
+          const div = document.createElement("div");
+          div.className = "load-more";
+          div.appendChild(btn);
+          loadMoreContainer.appendChild(div);
+        }
+      }
+
+      function createRepoCard(repo) {
+        // TODO: Create HTML for a single repository card
+        const card = document.createElement("div");
+        card.className = "repo-card";
+        const name = document.createElement("a");
+        name.href = repo.html_url;
+        name.target = "_blank";
+        name.className = "repo-name";
+        name.textContent = repo.full_name;
+        const desc = document.createElement("p");
+        desc.className = "repo-description";
+        desc.textContent = repo.description || "No description";
+        const meta = document.createElement("div");
+        meta.className = "repo-meta";
+        meta.innerHTML = `
+                ⭐ ${formatNumber(repo.stargazers_count)}
+                🔱 ${formatNumber(repo.forks_count)}
+                👤 ${repo.owner.login}
+                ${
+                  repo.language
+                    ? `<span class="language-badge">${repo.language}</span>`
+                    : ""
+                }
+            `;
+        card.appendChild(name);
+        card.appendChild(desc);
+        card.appendChild(meta);
+        return card;
+      }
+
+      async function performSearch() {
+        // TODO: Get search query and sort option
+        const query = document.getElementById("searchInput").value.trim();
+        const sort = document.getElementById("sortSelect").value;
+        if (!query) {
+          showError("Please enter a search term");
+          return;
+        }
+        // TODO: Reset page to 1
+        currentQuery = query;
+        currentPage = 1;
+        // TODO: Call searchRepositories
+        const repos = await searchRepositories(query, sort, currentPage);
+        // TODO: Display results
+        displayRepositories(repos);
+      }
+
+      async function loadMore() {
+        // TODO: Increment page
+        currentPage++;
+        // TODO: Fetch next page
+        const sort = document.getElementById("sortSelect").value;
+        const repos = await searchRepositories(currentQuery, sort, currentPage);
+        // TODO: Append results
+        displayRepositories(repos, true);
+      }
+
+      function showError(message) {
+        // TODO: Display error message
+        const errorDiv = document.getElementById("errorMessage");
+        errorDiv.innerHTML = `<div class="error">${message}</div>`;
+      }
+
+      function clearError() {
+        // TODO: Clear error message
+        const errorDiv = document.getElementById("errorMessage");
+        errorDiv.innerHTML = "";
+      }
+
+      function formatNumber(num) {
+        // TODO: Format large numbers (e.g., 1500 -> 1.5k)
+        if (num >= 1000) {
+          return (num / 1000).toFixed(1) + "k";
+        }
+        return num;
+      }
+    </script>
+  </body>
+</html>
