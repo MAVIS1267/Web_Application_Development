@@ -1,0 +1,17 @@
+services:
+  mysql:
+    image: mysql
+    container_name: lab5_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: mailongthien111   # Đặt mật khẩu root cho MySQL
+      MYSQL_DATABASE: student_management   # Tạo một database mặc định
+      MYSQL_USER: user1     # Tạo một user mới
+      MYSQL_PASSWORD: user1        # Mật khẩu cho user mới
+    ports:
+      - "3307:3306"                        # Map cổng 3306 từ container ra cổng 3307 của máy chủ
+    volumes:
+      - mysql-data:/var/lib/mysql          # Lưu dữ liệu MySQL vào volume
+
+volumes:
+  mysql-data:
+

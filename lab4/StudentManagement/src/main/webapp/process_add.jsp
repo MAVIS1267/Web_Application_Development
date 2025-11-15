@@ -12,6 +12,19 @@
         return;
     }
 
+    String codePattern = "[A-Z]{2}[0-9]{3,}";
+    if (!studentCode.matches(codePattern)) {
+        response.sendRedirect("add_student.jsp?error=Student code must be 2 uppercase letters followed by 3+ digits (e.g., SV001)");
+        return;
+    }
+    if (email != null && !email.isEmpty()) {
+        if (!email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
+            // Invalid email format
+            response.sendRedirect("add_student.jsp?error=Invalid email format");
+            return;
+        }
+    }
+
     Connection conn = null;
     PreparedStatement pstmt = null;
 

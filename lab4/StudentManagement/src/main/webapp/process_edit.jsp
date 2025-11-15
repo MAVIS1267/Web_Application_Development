@@ -12,6 +12,20 @@
   }
 
   int studentId = Integer.parseInt(idParam);
+  try {
+    studentId = Integer.parseInt(idParam);
+  } catch (NumberFormatException e) {
+    response.sendRedirect("list_students.jsp?error=Invalid student ID");
+    return;
+  }
+
+  if (email != null && !email.isEmpty()) {
+    if (!email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
+      // Invalid email format
+      response.sendRedirect("add_student.jsp?error=Invalid email format");
+      return;
+    }
+  }
 
   Connection conn = null;
   PreparedStatement pstmt = null;

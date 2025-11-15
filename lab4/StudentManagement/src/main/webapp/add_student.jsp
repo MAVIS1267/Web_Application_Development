@@ -45,6 +45,11 @@
             border-radius: 5px;
             cursor: pointer;
             margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+        .btn-submit:disabled {
+            background-color: #1e7e34;
+            cursor: not-allowed;
         }
         .btn-cancel {
             background-color: #6c757d;
@@ -74,7 +79,7 @@
     </div>
     <% } %>
 
-    <form action="process_add.jsp" method="POST">
+    <form action="process_add.jsp" method="POST" onsubmit="return submitForm(this)">
         <div class="form-group">
             <label for="student_code">Student Code <span class="required">*</span></label>
             <input type="text" id="student_code" name="student_code"
@@ -105,5 +110,22 @@
         <a href="list_students.jsp" class="btn-cancel">Cancel</a>
     </form>
 </div>
+
+<script>
+    function submitForm(form) {
+        if (!form.checkValidity()) {
+            return true;
+        }
+        var btn = form.querySelector('button[type="submit"]');
+        if (btn) {
+            btn.disabled = true;
+            btn.textContent = 'Processing...';
+        }
+        setTimeout(function() {
+            form.submit();
+        }, 2000);
+        return false;
+    }
+</script>
 </body>
 </html>
