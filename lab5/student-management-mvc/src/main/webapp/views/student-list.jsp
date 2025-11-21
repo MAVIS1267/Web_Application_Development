@@ -122,6 +122,19 @@
             letter-spacing: 0.5px;
         }
 
+        th a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        th a:hover {
+            text-decoration: underline;
+            opacity: 0.9;
+        }
+
         tbody tr {
             transition: background-color 0.2s;
         }
@@ -145,6 +158,23 @@
             font-size: 64px;
             margin-bottom: 20px;
         }
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .search-box form, .filter-box form {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .filter-select { width: 200px; }
     </style>
 </head>
 <body>
@@ -166,12 +196,52 @@
         </div>
     </c:if>
 
-    <!-- Add New Student Button -->
-    <div style="margin-bottom: 20px;">
+    <!-- Toolbar -->
+    <div class="toolbar">
         <a href="student?action=new" class="btn btn-primary">
             ➕ Add New Student
         </a>
+
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <div class="filter-box">
+                <form action="student" method="get">
+                    <input type="hidden" name="action" value="filter">
+                    <select name="major" class="filter-select" onchange="this.form.submit()">
+                        <option value="">All Majors</option>
+                        <option value="Computer Science" ${currentMajor == 'Computer Science' ? 'selected' : ''}>Computer Science</option>
+                        <option value="Information Technology" ${currentMajor == 'Information Technology' ? 'selected' : ''}>Information Technology</option>
+                        <option value="Software Engineering" ${currentMajor == 'Software Engineering' ? 'selected' : ''}>Software Engineering</option>
+                        <option value="Business Administration" ${currentMajor == 'Business Administration' ? 'selected' : ''}>Business Administration</option>
+                    </select>
+                    <button type="submit" class="btn btn-secondary">Filter</button>
+                    <c:if test="${not empty currentMajor}">
+                        <a href="student?action=list" class="btn btn-outline">Clear</a>
+                    </c:if>
+                </form>
+            </div>
+            <div class="search-box">
+                <form action="student" method="get">
+                    <input type="hidden" name="action" value="search">
+                    <input type="text"
+                           name="keyword"
+                           class="search-input"
+                           value="${keyword}"
+                           placeholder="Search by name or email...">
+                    <button type="submit" class="btn btn-secondary">🔍</button>
+                    <c:if test="${not empty keyword}">
+                        <a href="student?action=list" class="btn btn-outline">Clear</a>
+                    </c:if>
+                </form>
+            </div>
+        </div>
     </div>
+
+    <!-- Search Feedback Message -->
+    <c:if test="${not empty keyword}">
+        <div class="message info">
+            Search results for: <strong>${keyword}</strong>
+        </div>
+    </c:if>
 
     <!-- Student Table -->
     <c:choose>
@@ -179,11 +249,46 @@
             <table>
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Student Code</th>
-                    <th>Full Name</th>
-                    <th>Email</th>
-                    <th>Major</th>
+                    <!-- ID Column Sort -->
+                    <th>
+                        <c:set var="newOrder" value="${sortBy == 'id' && order == 'asc' ? 'desc' : 'asc'}" />
+                        <a href="student?action=sort&sortBy=id&order=${newOrder}">
+                            ID <c:if test="${sortBy == 'id'}">${order == 'asc' ? '▲' : '▼'}</c:if>
+                        </a>
+                    </th>
+
+                    <!-- Code Column Sort -->
+                    <th>
+                        <c:set var="newOrder" value="${sortBy == 'student_code' && order == 'asc' ? 'desc' : 'asc'}" />
+                        <a href="student?action=sort&sortBy=student_code&order=${newOrder}">
+                            Student Code <c:if test="${sortBy == 'student_code'}">${order == 'asc' ? '▲' : '▼'}</c:if>
+                        </a>
+                    </th>
+
+                    <!-- Name Column Sort -->
+                    <th>
+                        <c:set var="newOrder" value="${sortBy == 'full_name' && order == 'asc' ? 'desc' : 'asc'}" />
+                        <a href="student?action=sort&sortBy=full_name&order=${newOrder}">
+                            Full Name <c:if test="${sortBy == 'full_name'}">${order == 'asc' ? '▲' : '▼'}</c:if>
+                        </a>
+                    </th>
+
+                    <!-- Email Column Sort -->
+                    <th>
+                        <c:set var="newOrder" value="${sortBy == 'email' && order == 'asc' ? 'desc' : 'asc'}" />
+                        <a href="student?action=sort&sortBy=email&order=${newOrder}">
+                            Email <c:if test="${sortBy == 'email'}">${order == 'asc' ? '▲' : '▼'}</c:if>
+                        </a>
+                    </th>
+
+                    <!-- Major Column Sort -->
+                    <th>
+                        <c:set var="newOrder" value="${sortBy == 'major' && order == 'asc' ? 'desc' : 'asc'}" />
+                        <a href="student?action=sort&sortBy=major&order=${newOrder}">
+                            Major <c:if test="${sortBy == 'major'}">${order == 'asc' ? '▲' : '▼'}</c:if>
+                        </a>
+                    </th>
+
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -216,7 +321,9 @@
             <div class="empty-state">
                 <div class="empty-state-icon">📭</div>
                 <h3>No students found</h3>
-                <p>Start by adding a new student</p>
+                <c:if test="${not empty currentMajor}">
+                    <p>Current filter: <strong>${currentMajor}</strong>. <a href="student?action=list">Clear filter</a></p>
+                </c:if>
             </div>
         </c:otherwise>
     </c:choose>
