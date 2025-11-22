@@ -300,6 +300,26 @@ public class StudentDAO {
         return students;
     }
 
+    public int getTotalStudents() {
+        int count = 0;
+        String sql = "SELECT COUNT(id) FROM students";
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            // The result set for a COUNT query will have one row.
+            if (rs.next()) {
+                // Get the count from the first column.
+                count = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+
     public static void main(String[] args) {
         StudentDAO dao = new StudentDAO();
         List<Student> results = dao.searchStudents("john");

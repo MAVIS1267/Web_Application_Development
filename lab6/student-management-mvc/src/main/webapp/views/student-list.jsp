@@ -174,10 +174,88 @@
             align-items: center;
         }
 
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .navbar h2 {
+            font-size: 20px;
+        }
+
+        .navbar {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-logout:hover {
+            background: #c0392b;
+        }
+
+        .btn-logout {
+            padding: 8px 20px;
+            background: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .role-badge {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .role-admin {
+            background: #e74c3c;
+        }
+
+        .role-user {
+            background: #3498db;
+        }
+
+        .btn-nav {
+            padding: 8px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
         .filter-select { width: 200px; }
     </style>
 </head>
 <body>
+<div class="navbar">
+    <h2>📚 Student Management System</h2>
+    <div class="navbar-right">
+        <div class="user-info">
+            <span>Welcome, ${sessionScope.fullName}</span>
+            <span class="role-badge role-${sessionScope.role}">
+                ${sessionScope.role}
+            </span>
+        </div>
+        <a href="dashboard" class="btn-nav">Dashboard</a>
+        <a href="logout" class="btn-logout">Logout</a>
+    </div>
+</div>
+
 <div class="container">
     <h1>📚 Student Management System</h1>
     <p class="subtitle">MVC Pattern with Jakarta EE & JSTL</p>
@@ -198,9 +276,11 @@
 
     <!-- Toolbar -->
     <div class="toolbar">
-        <a href="student?action=new" class="btn btn-primary">
-            ➕ Add New Student
-        </a>
+        <c:if test="${sessionScope.role eq 'admin'}">
+            <div style="margin: 20px 0;">
+                <a href="student?action=new" class="btn btn-primary">➕ Add New Student</a>
+            </div>
+        </c:if>
 
         <div style="display: flex; gap: 15px; flex-wrap: wrap;">
             <div class="filter-box">
