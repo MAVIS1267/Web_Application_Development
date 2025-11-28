@@ -197,8 +197,8 @@
     <!-- Demo Credentials -->
     <div class="demo-credentials">
         <h4>Demo Credentials:</h4>
-        <p><strong>Admin:</strong> username: admin / password: password123</p>
-        <p><strong>User:</strong> username: john / password: password123</p>
+        <p><strong>Admin:</strong> username: admin1 / password: admin123</p>
+        <p><strong>User:</strong> username: user1 / password: user123</p>
     </div>
 </div>
 </body>

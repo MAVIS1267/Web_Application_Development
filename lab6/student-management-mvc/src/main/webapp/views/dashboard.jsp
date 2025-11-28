@@ -181,6 +181,14 @@
         .action-btn-warning {
             background: #f39c12;
         }
+
+        .action-btn-password {
+            background: #8e44ad;
+        }
+
+        .action-btn-password:hover {
+            background: #732d91;
+        }
     </style>
 </head>
 <body>
@@ -235,6 +243,10 @@
 
             <a href="student?action=search" class="action-btn action-btn-warning">
                 🔍 Search Students
+            </a>
+
+            <a href="change-password" class="action-btn action-btn-password">
+                🔐 Change Password
             </a>
         </div>
     </div>

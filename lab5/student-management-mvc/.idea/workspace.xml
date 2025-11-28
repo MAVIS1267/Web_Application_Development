@@ -10,21 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8727f8b5-85ab-4ea9-a0ae-486115ce296f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/student/controller/StudentController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/student/dao/StudentDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/student/model/Student.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/student-form.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/student-list.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab5_StudentMVC.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../student-management-mvc_homework.zip" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,11 +61,15 @@
     "Tomcat Server.Tomcat 10.1.48.executor": "Run",
     "Tomcat Server.student-list.jsp.executor": "Run",
     "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/fuduweiii/IT/Project/Web_Application_Development/lab5/student-management-mvc_homework/student-management-mvc",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -257,7 +249,9 @@
       <workItem from="1763718983528" duration="451000" />
       <workItem from="1763726079456" duration="1142000" />
       <workItem from="1763727310847" duration="5425000" />
-      <workItem from="1763774264320" duration="7972000" />
+      <workItem from="1763774264320" duration="8111000" />
+      <workItem from="1763783338960" duration="35000" />
+      <workItem from="1763784059923" duration="243000" />
     </task>
     <servers />
   </component>
