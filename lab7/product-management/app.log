@@ -1,0 +1,262 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< com.example:product-management >-------------------
+[INFO] Building product-management 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.0:run (default-cli) > test-compile @ product-management >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ product-management ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 2 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ product-management ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ product-management ---
+[INFO] skip non existing resourceDirectory /home/fuduweiii/Downloads/product-management/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ product-management ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.0.0:run (default-cli) < test-compile @ product-management <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.0:run (default-cli) @ product-management ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.0)
+
+2025-11-29T21:03:28.183+07:00  INFO 58321 --- [product-management] [  restartedMain] c.e.p.ProductManagementApplication       : Starting ProductManagementApplication using Java 21.0.9 with PID 58321 (/home/fuduweiii/Downloads/product-management/target/classes started by fuduweiii in /home/fuduweiii/Downloads/product-management)
+2025-11-29T21:03:28.185+07:00 DEBUG 58321 --- [product-management] [  restartedMain] c.e.p.ProductManagementApplication       : Running with Spring Boot v4.0.0, Spring v7.0.1
+2025-11-29T21:03:28.185+07:00  INFO 58321 --- [product-management] [  restartedMain] c.e.p.ProductManagementApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-29T21:03:28.205+07:00  INFO 58321 --- [product-management] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-11-29T21:03:28.206+07:00  INFO 58321 --- [product-management] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-11-29T21:03:28.445+07:00  INFO 58321 --- [product-management] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-29T21:03:28.480+07:00  INFO 58321 --- [product-management] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 31 ms. Found 1 JPA repository interface.
+2025-11-29T21:03:28.671+07:00  INFO 58321 --- [product-management] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2025-11-29T21:03:28.678+07:00  INFO 58321 --- [product-management] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-29T21:03:28.678+07:00  INFO 58321 --- [product-management] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.14]
+2025-11-29T21:03:28.691+07:00  INFO 58321 --- [product-management] [  restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 485 ms
+2025-11-29T21:03:28.755+07:00  INFO 58321 --- [product-management] [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-29T21:03:28.770+07:00  INFO 58321 --- [product-management] [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 7.1.8.Final
+2025-11-29T21:03:28.928+07:00  INFO 58321 --- [product-management] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-29T21:03:28.941+07:00  INFO 58321 --- [product-management] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-29T21:03:29.020+07:00  INFO 58321 --- [product-management] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@63edc85f
+2025-11-29T21:03:29.021+07:00  INFO 58321 --- [product-management] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-29T21:03:29.042+07:00  WARN 58321 --- [product-management] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-29T21:03:29.050+07:00  INFO 58321 --- [product-management] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3307/product_management?useSSL=false&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.44
+	Default catalog/schema: product_management/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DatasourceConnectionProviderImpl
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-29T21:03:29.398+07:00  INFO 58321 --- [product-management] [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-29T21:03:29.424+07:00  INFO 58321 --- [product-management] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-29T21:03:29.459+07:00  INFO 58321 --- [product-management] [  restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-29T21:03:29.568+07:00  WARN 58321 --- [product-management] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-29T21:03:29.717+07:00  WARN 58321 --- [product-management] [  restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-11-29T21:03:29.718+07:00  INFO 58321 --- [product-management] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-29T21:03:29.719+07:00  INFO 58321 --- [product-management] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-29T21:03:29.722+07:00  INFO 58321 --- [product-management] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-29T21:03:29.731+07:00  INFO 58321 --- [product-management] [  restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-11-29T21:03:29.742+07:00 ERROR 58321 --- [product-management] [  restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.464 s
+[INFO] Finished at: 2025-11-29T21:03:29+07:00
+[INFO] ------------------------------------------------------------------------
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                2025-11-29T21:03:26.204+07:00  INFO 55204 --- [product-management] [   File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 9 class path changes (0 additions, 0 deletions, 9 modifications)
+2025-11-29T21:03:26.211+07:00  INFO 55204 --- [product-management] [       Thread-5] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-29T21:03:26.211+07:00  INFO 55204 --- [product-management] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2025-11-29T21:03:26.212+07:00  INFO 55204 --- [product-management] [       Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-29T21:03:26.213+07:00  INFO 55204 --- [product-management] [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2025-11-29T21:03:26.214+07:00  INFO 55204 --- [product-management] [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.0)
+
+2025-11-29T21:03:26.274+07:00  INFO 55204 --- [product-management] [  restartedMain] c.e.p.ProductManagementApplication       : Starting ProductManagementApplication using Java 21.0.9 with PID 55204 (/home/fuduweiii/Downloads/product-management/target/classes started by fuduweiii in /home/fuduweiii/Downloads/product-management)
+2025-11-29T21:03:26.274+07:00 DEBUG 55204 --- [product-management] [  restartedMain] c.e.p.ProductManagementApplication       : Running with Spring Boot v4.0.0, Spring v7.0.1
+2025-11-29T21:03:26.275+07:00  INFO 55204 --- [product-management] [  restartedMain] c.e.p.ProductManagementApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-29T21:03:26.322+07:00  INFO 55204 --- [product-management] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-29T21:03:26.324+07:00  INFO 55204 --- [product-management] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 2 ms. Found 1 JPA repository interface.
+2025-11-29T21:03:26.351+07:00  INFO 55204 --- [product-management] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2025-11-29T21:03:26.352+07:00  INFO 55204 --- [product-management] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-29T21:03:26.352+07:00  INFO 55204 --- [product-management] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.14]
+2025-11-29T21:03:26.355+07:00  INFO 55204 --- [product-management] [  restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 79 ms
+2025-11-29T21:03:26.369+07:00  INFO 55204 --- [product-management] [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-29T21:03:26.376+07:00  INFO 55204 --- [product-management] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-29T21:03:26.376+07:00  INFO 55204 --- [product-management] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2025-11-29T21:03:26.381+07:00  INFO 55204 --- [product-management] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5cd62e97
+2025-11-29T21:03:26.381+07:00  INFO 55204 --- [product-management] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2025-11-29T21:03:26.382+07:00  WARN 55204 --- [product-management] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-29T21:03:26.383+07:00  INFO 55204 --- [product-management] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3307/product_management?useSSL=false&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.44
+	Default catalog/schema: product_management/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DatasourceConnectionProviderImpl
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-29T21:03:26.399+07:00  INFO 55204 --- [product-management] [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-29T21:03:26.406+07:00  INFO 55204 --- [product-management] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-29T21:03:26.442+07:00  WARN 55204 --- [product-management] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-29T21:03:26.478+07:00  INFO 55204 --- [product-management] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2025-11-29T21:03:26.479+07:00  INFO 55204 --- [product-management] [  restartedMain] c.e.p.ProductManagementApplication       : Started ProductManagementApplication in 0.215 seconds (process running for 167.279)
+2025-11-29T21:03:26.479+07:00  INFO 55204 --- [product-management] [  restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-11-29T21:04:41.117+07:00  INFO 55204 --- [product-management] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-29T21:04:41.117+07:00  INFO 55204 --- [product-management] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-29T21:04:41.118+07:00  INFO 55204 --- [product-management] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.category,
+        p1_0.created_at,
+        p1_0.description,
+        p1_0.name,
+        p1_0.price,
+        p1_0.product_code,
+        p1_0.quantity 
+    from
+        products p1_0
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.category,
+        p1_0.created_at,
+        p1_0.description,
+        p1_0.name,
+        p1_0.price,
+        p1_0.product_code,
+        p1_0.quantity 
+    from
+        products p1_0
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.category,
+        p1_0.created_at,
+        p1_0.description,
+        p1_0.name,
+        p1_0.price,
+        p1_0.product_code,
+        p1_0.quantity 
+    from
+        products p1_0
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.category,
+        p1_0.created_at,
+        p1_0.description,
+        p1_0.name,
+        p1_0.price,
+        p1_0.product_code,
+        p1_0.quantity 
+    from
+        products p1_0 
+    where
+        p1_0.id=?
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.category,
+        p1_0.created_at,
+        p1_0.description,
+        p1_0.name,
+        p1_0.price,
+        p1_0.product_code,
+        p1_0.quantity 
+    from
+        products p1_0 
+    where
+        p1_0.id=?
+2025-11-29T21:33:54.658+07:00  INFO 55204 --- [product-management] [   File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 9 class path changes (0 additions, 9 deletions, 0 modifications)
+2025-11-29T21:33:54.659+07:00  INFO 55204 --- [product-management] [       Thread-9] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-29T21:33:54.661+07:00  INFO 55204 --- [product-management] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2025-11-29T21:33:54.663+07:00  INFO 55204 --- [product-management] [       Thread-9] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-29T21:33:54.663+07:00  INFO 55204 --- [product-management] [       Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2025-11-29T21:33:54.664+07:00  INFO 55204 --- [product-management] [       Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.0)
+
+2025-11-29T21:33:54.714+07:00  INFO 55204 --- [product-management] [  restartedMain] c.e.p.ProductManagementApplication       : Starting ProductManagementApplication using Java 21.0.9 with PID 55204 (started by fuduweiii in /home/fuduweiii/Downloads/product-management)
+2025-11-29T21:33:54.715+07:00  INFO 55204 --- [product-management] [  restartedMain] c.e.p.ProductManagementApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-29T21:33:54.803+07:00  INFO 55204 --- [product-management] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-29T21:33:54.805+07:00  INFO 55204 --- [product-management] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 0 ms. Found 0 JPA repository interfaces.
+2025-11-29T21:33:54.857+07:00  INFO 55204 --- [product-management] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2025-11-29T21:33:54.858+07:00  INFO 55204 --- [product-management] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-29T21:33:54.858+07:00  INFO 55204 --- [product-management] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.14]
+2025-11-29T21:33:54.863+07:00  INFO 55204 --- [product-management] [  restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 147 ms
+2025-11-29T21:33:54.873+07:00  WARN 55204 --- [product-management] [  restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'inMemoryDatabaseShutdownExecutor' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'inMemoryDatabaseShutdownExecutor' defined in class path resource [org/springframework/boot/devtools/autoconfigure/DevToolsDataSourceAutoConfiguration.class]: Unsatisfied dependency expressed through method 'inMemoryDatabaseShutdownExecutor' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/jdbc/autoconfigure/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Failed to determine a suitable driver class
+2025-11-29T21:33:54.874+07:00  INFO 55204 --- [product-management] [  restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-11-29T21:33:54.876+07:00  INFO 55204 --- [product-management] [  restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-11-29T21:33:54.947+07:00 ERROR 55204 --- [product-management] [  restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+
