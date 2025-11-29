@@ -37,7 +37,7 @@
     *   `spring-boot-starter-thymeleaf`: For server-side template rendering.
 
 **Screenshot:**
-![alt text](images/image.png)
+![alt text](product-management/images/image.png)
 ---
 
 ### Task 1.2: Database Setup (5 points)
@@ -502,7 +502,7 @@ public class ProductController {
 *   **Conditional Rendering**: `th:if="${message}"` ensures the alert box only appears when a message exists.
 
 **Screenshot:**
-![alt text](images/image1.png)
+![alt text](product-management/images/image1.png)
 
 ---
 
@@ -549,5 +549,5 @@ public class ProductController {
 *   **Hidden ID**: A hidden input field for `id` ensures that when updating, the existing record is modified instead of creating a new one.
 
 **Screenshot:**
-![alt text](images/image2.png)
-![alt text](images/image3.png)
+![alt text](product-management/images/image2.png)
+![alt text](product-management/images/image3.png)
