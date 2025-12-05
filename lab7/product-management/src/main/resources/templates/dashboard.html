@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Product Management</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        color: #667eea;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      h2 {
+        color: #667eea;
+        margin-top: 30px;
+        margin-bottom: 15px;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .stat-card {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #667eea;
+      }
+
+      .stat-card h3 {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .stat-card .value {
+        color: #667eea;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #667eea;
+        color: white;
+      }
+
+      tr:hover {
+        background-color: #f5f5f5;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s;
+        background-color: #667eea;
+        color: white;
+      }
+
+      .btn:hover {
+        background-color: #5568d3;
+      }
+
+      .category-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .category-list li {
+        padding: 10px;
+        background: #f8f9fa;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .low-stock {
+        color: #dc3545;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>📊 Dashboard</h1>
+
+      <!-- Statistics Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Total Products</h3>
+          <div class="value" th:text="${totalProducts}">0</div>
+        </div>
+
+        <div class="stat-card">
+          <h3>Total Inventory Value</h3>
+          <div
+            class="value"
+            th:text="'$' + ${totalValue != null ? #numbers.formatDecimal(totalValue, 0, 'COMMA', 2, 'POINT') : '0.00'}"
+          >
+            $0.00
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <h3>Average Product Price</h3>
+          <div
+            class="value"
+            th:text="'$' + ${averagePrice != null ? #numbers.formatDecimal(averagePrice, 0, 'COMMA', 2, 'POINT') : '0.00'}"
+          >
+            $0.00
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <h3>Low Stock Items</h3>
+          <div class="value" th:text="${lowStockProducts.size()}">0</div>
+        </div>
+      </div>
+
+      <!-- Products by Category -->
+      <h2>Products by Category</h2>
+      <ul class="category-list">
+        <li th:each="cat : ${categories}">
+          <span th:text="${cat}">Category</span>
+          <span th:text="${productService.countByCategory(cat)} + ' products'"
+            >0 products</span
+          >
+        </li>
+      </ul>
+
+      <!-- Low Stock Alerts -->
+      <h2>Low Stock Alerts (Quantity < 10)</h2>
+      <div th:if="${lowStockProducts != null and !lowStockProducts.isEmpty()}">
+        <table>
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Quantity</th>
+              <th>Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="product : ${lowStockProducts}">
+              <td th:text="${product.productCode}">P001</td>
+              <td th:text="${product.name}">Product Name</td>
+              <td class="low-stock" th:text="${product.quantity}">0</td>
+              <td th:text="${product.category}">Category</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div th:if="${lowStockProducts == null or lowStockProducts.isEmpty()}">
+        <p>✅ All products have sufficient stock!</p>
+      </div>
+
+      <!-- Recent Products -->
+      <h2>Recent Products (Last 5 Added)</h2>
+      <div th:if="${recentProducts != null and !recentProducts.isEmpty()}">
+        <table>
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Category</th>
+              <th>Added Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="product : ${recentProducts}">
+              <td th:text="${product.productCode}">P001</td>
+              <td th:text="${product.name}">Product Name</td>
+              <td
+                th:text="'$' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}"
+              >
+                $0.00
+              </td>
+              <td th:text="${product.quantity}">0</td>
+              <td th:text="${product.category}">Category</td>
+              <td
+                th:text="${#temporals.format(product.createdAt, 'dd/MM/yyyy HH:mm')}"
+              >
+                01/01/2024
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 30px; text-align: center">
+        <a th:href="@{/products}" class="btn">← Back to Products</a>
+      </div>
+    </div>
+  </body>
+</html>
