@@ -1,0 +1,75 @@
+{
+	"info": {
+		"_postman_id": "6c8dd243-8723-4757-9d6b-e1e55987a634",
+		"name": "Customer_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50772044",
+		"_collection_link": "https://fuduweiii111-9792857.postman.co/workspace/fuduweiii's-Workspace~97aa5081-7423-4c53-8a60-184b755363c4/collection/50772044-6c8dd243-8723-4757-9d6b-e1e55987a634?action=share&source=collection_link&creator=50772044"
+	},
+	"item": [
+		{
+			"name": "GET All Customers",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "GET Customer by ID",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "POST create customer",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Update Customer",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH partial update",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE customer",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Search customers",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Filter by status",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

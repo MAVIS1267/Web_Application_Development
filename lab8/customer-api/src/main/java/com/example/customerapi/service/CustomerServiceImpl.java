@@ -2,16 +2,21 @@ package com.example.customerapi.service;
 
 import com.example.customerapi.dto.CustomerRequestDTO;
 import com.example.customerapi.dto.CustomerResponseDTO;
+import com.example.customerapi.dto.CustomerUpdateDTO;
 import com.example.customerapi.entity.Customer;
 import com.example.customerapi.exception.DuplicateResourceException;
 import com.example.customerapi.exception.ResourceNotFoundException;
 import com.example.customerapi.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import com.example.customerapi.enum_class.CustomerStatus;
 
 @Service
 @Transactional
@@ -101,11 +106,63 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<CustomerResponseDTO> getCustomersByStatus(String status) {
-        return customerRepository.findByStatus(status)
+        CustomerStatus customerStatus = CustomerStatus.valueOf(status.toUpperCase());
+        return customerRepository.findByStatus(customerStatus)
                 .stream()
                 .map(this::convertToResponseDTO)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<CustomerResponseDTO> advancedSearch(String name, String email, String status) {
+        CustomerStatus statusEnum = null;
+        if (status != null && !status.trim().isEmpty()) {
+            try {
+                statusEnum = CustomerStatus.valueOf(status.toUpperCase());
+            } catch (IllegalArgumentException e) {
+            }
+        }
+        return customerRepository.advancedSearch(name, email, statusEnum)
+                .stream()
+                .map(this::convertToResponseDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Page<CustomerResponseDTO> getAllCustomers(Pageable pageable) {
+        Page<Customer> customerPage = customerRepository.findAll(pageable);
+        return customerPage.map(this::convertToResponseDTO);
+    }
+
+    @Override
+    public CustomerResponseDTO updateCustomer(Long id, CustomerUpdateDTO updateDTO) {
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer not found with id: " + id));
+
+        if (updateDTO.getFullName() != null) {
+            customer.setFullName(updateDTO.getFullName());
+        }
+        
+        if (updateDTO.getEmail() != null) {
+            if (!customer.getEmail().equals(updateDTO.getEmail()) && 
+                 customerRepository.existsByEmail(updateDTO.getEmail())) {
+                throw new DuplicateResourceException("Email already exists: " + updateDTO.getEmail());
+            }
+            customer.setEmail(updateDTO.getEmail());
+        }
+        
+        if (updateDTO.getPhone() != null) {
+            customer.setPhone(updateDTO.getPhone());
+        }
+        
+        if (updateDTO.getAddress() != null) {
+            customer.setAddress(updateDTO.getAddress());
+        }
+
+        Customer updatedCustomer = customerRepository.save(customer);
+        return convertToResponseDTO(updatedCustomer);
+    }
+
 
     // Helper Methods for DTO Conversion
 
