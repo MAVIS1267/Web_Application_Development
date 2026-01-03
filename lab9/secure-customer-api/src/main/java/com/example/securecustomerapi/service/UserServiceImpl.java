@@ -1,6 +1,7 @@
 package com.example.securecustomerapi.service;
 
 import com.example.securecustomerapi.dto.*;
+import com.example.securecustomerapi.entity.RefreshToken;
 import com.example.securecustomerapi.entity.Role;
 import com.example.securecustomerapi.entity.User;
 import com.example.securecustomerapi.exception.DuplicateResourceException;
@@ -32,6 +33,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private JwtTokenProvider tokenProvider;
 
+    @Autowired
+    private RefreshTokenService refreshTokenService;
+
     @Override
     public LoginResponseDTO login(LoginRequestDTO loginRequest) {
         // Authenticate user
@@ -51,8 +55,12 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByUsername(loginRequest.getUsername())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
+        // Create refresh token
+        RefreshToken refreshToken = refreshTokenService.createRefreshToken(user.getId());
+
         return new LoginResponseDTO(
                 token,
+                refreshToken.getToken(),
                 user.getUsername(),
                 user.getEmail(),
                 user.getRole().name()
@@ -101,6 +109,79 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         return convertToDTO(user);
+    }
+
+    @Override
+    public void changePassword(String username, ChangePasswordDTO dto) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        // 1. Verify current password
+        if (!passwordEncoder.matches(dto.getCurrentPassword(), user.getPassword())) {
+            throw new IllegalArgumentException("Incorrect current password");
+        }
+        // 2. Check new matches confirm
+        if (!dto.getNewPassword().equals(dto.getConfirmPassword())) {
+            throw new IllegalArgumentException("Passwords do not match");
+        }
+        // 3. Update password
+        user.setPassword(passwordEncoder.encode(dto.getNewPassword()));
+        userRepository.save(user);
+    }
+    @Override
+    public String forgotPassword(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with email: " + email));
+        // Generate token
+        String token = java.util.UUID.randomUUID().toString();
+        user.setResetToken(token);
+        user.setResetTokenExpiry(java.time.LocalDateTime.now().plusHours(1)); // 1 hour expiry
+
+        userRepository.save(user);
+
+        return token;
+    }
+    @Override
+    @Transactional
+    public void resetPassword(String token, String newPassword) {
+        User user = userRepository.findByResetToken(token)
+                .orElseThrow(() -> new ResourceNotFoundException("Invalid or expired reset token"));
+        if (user.getResetTokenExpiry().isBefore(java.time.LocalDateTime.now())) {
+            throw new IllegalArgumentException("Token expired");
+        }
+        user.setPassword(passwordEncoder.encode(newPassword));
+        user.setResetToken(null);
+        user.setResetTokenExpiry(null);
+
+        userRepository.save(user);
+    }
+
+    @Override
+    public UserResponseDTO updateProfile(String username, UserUpdateDTO dto) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        user.setFullName(dto.getFullName());
+        user.setEmail(dto.getEmail());
+
+        User updatedUser = userRepository.save(user);
+        return convertToDTO(updatedUser);
+    }
+
+    @Override
+    public java.util.List<UserResponseDTO> getAllUsers() {
+        return userRepository.findAll().stream()
+                .map(this::convertToDTO)
+                .collect(java.util.stream.Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public void deleteUser(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        
+        refreshTokenService.deleteByUserId(id);
+        userRepository.delete(user);
     }
 
     private UserResponseDTO convertToDTO(User user) {
